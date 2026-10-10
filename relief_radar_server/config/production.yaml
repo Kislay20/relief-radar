@@ -7,7 +7,7 @@
 # Configuration for the main API server.
 apiServer:
   port: 8080
-  publicHost: https://relief-radar-api.onrender.com
+  publicHost: relief-radar-api.onrender.com
   publicPort: 443
   publicScheme: https
 
