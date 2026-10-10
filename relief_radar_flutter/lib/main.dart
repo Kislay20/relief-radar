@@ -22,29 +22,8 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    sessionManager.addListener(_onSessionChanged);
-  }
-
-  @override
-  void dispose() {
-    sessionManager.removeListener(_onSessionChanged);
-    super.dispose();
-  }
-
-  void _onSessionChanged() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +34,15 @@ class _MyAppState extends State<MyApp> {
       theme: AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      home: sessionManager.isSignedIn ? const HomePage() : const LoginPage(),
+      // Automatically bypasses login screen if user session persists across restarts
+      home: ListenableBuilder(
+        listenable: sessionManager,
+        builder: (context, _) {
+          return sessionManager.isSignedIn
+              ? const HomePage()
+              : const LoginPage();
+        },
+      ),
     );
   }
 }

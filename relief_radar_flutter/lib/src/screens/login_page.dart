@@ -9,8 +9,6 @@ import '../../client.dart';
 import '../theme/app_theme.dart';
 import '../widgets/gateway_config_dialog.dart';
 
-import 'home_page.dart';
-
 /// Professional Emergency-Response Authentication Portal.
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -74,9 +72,9 @@ class _LoginPageState extends State<LoginPage>
 
   void _onSessionChanged() {
     if (sessionManager.isSignedIn && mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomePage()),
-      );
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     }
   }
 
@@ -386,9 +384,9 @@ class _LoginPageState extends State<LoginPage>
         _showSuccessSnackBar(
           'Authorized as ${response.userInfo!.userName ?? email}',
         );
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomePage()),
-        );
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop();
+        }
       }
     } catch (e, st) {
       debugPrint('[LoginPage] Authentication error: $e');
@@ -515,9 +513,9 @@ class _LoginPageState extends State<LoginPage>
           _showSuccessSnackBar(
             'Registration complete! Welcome to Command Ops.',
           );
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomePage()),
-          );
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
         }
       } else {
         setState(() {

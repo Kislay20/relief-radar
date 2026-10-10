@@ -223,14 +223,13 @@ Future<void> updateClientServerUrl(String newUrl) async {
   debugPrint('[ClientConfig] Switching active client gateway to: $newUrl');
   client = _buildClient(newUrl);
   authCaller = client.modules.auth;
+  sessionManager.caller = authCaller;
+  sessionManager.keyManager =
+      authCaller.client.authKeyProvider as FlutterAuthenticationKeyManager;
   try {
-    sessionManager.caller = authCaller;
-    sessionManager.keyManager =
-        authCaller.client.authKeyProvider as FlutterAuthenticationKeyManager;
     await sessionManager.refreshSession();
-  } catch (_) {
-    sessionManager = SessionManager(caller: authCaller);
-    await sessionManager.initialize();
+  } catch (e) {
+    debugPrint('[ClientConfig] Session refresh on gateway update skipped: $e');
   }
   activeServerUrlNotifier.value = newUrl;
   OfflineSyncService.registerClient(client);
@@ -277,6 +276,15 @@ Client _buildClient(String resolvedUrl) {
             context.methodName == 'getAllActiveZones') {
           debugPrint(
             '[ClientConfig] Suppressed background health check error on ${context.endpointName}.${context.methodName} from clientErrorNotifier.',
+          );
+          return;
+        }
+
+        // Suppress background session validation checks from triggering UI error modals
+        if (context.endpointName == 'status' &&
+            context.methodName == 'getUserInfo') {
+          debugPrint(
+            '[ClientConfig] Suppressed background session check on status.getUserInfo from clientErrorNotifier.',
           );
           return;
         }
@@ -336,6 +344,17 @@ Future<void> initializeClient({
   client = _buildClient(resolvedUrl);
   authCaller = client.modules.auth;
   sessionManager = SessionManager(caller: authCaller);
-  await sessionManager.initialize();
+  try {
+    // Restores persistent session state from SharedPreferences (serverpod_auth_shared_flutter)
+    // and verifies token with backend if reachable.
+    await sessionManager.initialize().timeout(const Duration(seconds: 4));
+    debugPrint(
+      '[ClientConfig] SessionManager initialized. User is signed in: ${sessionManager.isSignedIn}',
+    );
+  } catch (e) {
+    debugPrint(
+      '[ClientConfig] SessionManager initialize completed with note: $e',
+    );
+  }
   activeServerUrlNotifier.value = resolvedUrl;
 }

@@ -14,7 +14,6 @@ import '../services/notification_service.dart';
 import '../services/offline_sync_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/gateway_config_dialog.dart';
-import 'login_page.dart';
 import 'map_screen.dart';
 
 /// Tactical Emergency Operations & Incident Command Dashboard.
@@ -874,10 +873,10 @@ class _HomePageState extends State<HomePage> {
         debugPrint('Logout warning: $e');
       } finally {
         if (mounted) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => const LoginPage()),
-            (route) => false,
-          );
+          Navigator.of(
+            context,
+            rootNavigator: true,
+          ).popUntil((route) => route.isFirst);
         }
       }
     }
