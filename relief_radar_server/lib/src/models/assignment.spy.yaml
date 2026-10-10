@@ -1,0 +1,16 @@
+class: Assignment
+table: assignment
+fields:
+  incidentId: int, relation(parent=incident, onDelete=Cascade)
+  responderId: int, relation(parent=responder, onDelete=Cascade)
+  status: AssignmentStatus
+  offeredAtLevel: int
+  offeredAt: DateTime, default=now
+  respondedAt: DateTime?
+  etaMinutes: int?
+indexes:
+  assignment_incident_responder_uq:
+    fields: incidentId, responderId
+    unique: true
+  assignment_responder_status_idx:
+    fields: responderId, status

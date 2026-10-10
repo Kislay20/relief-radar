@@ -1,0 +1,6 @@
+class: StreamHead
+table: stream_head
+fields:
+  streamId: String, unique
+  headSeq: int, default=0
+  updatedAt: DateTime, default=now

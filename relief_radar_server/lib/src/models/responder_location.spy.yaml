@@ -1,0 +1,13 @@
+class: ResponderLocation
+table: responder_location
+fields:
+  responderId: int
+  latitude: double
+  longitude: double
+  timestamp: DateTime, default=now
+  status: String
+indexes:
+  responder_location_responder_idx:
+    fields: responderId
+  responder_location_timestamp_idx:
+    fields: timestamp

@@ -1,0 +1,30 @@
+services:
+  # Development services
+  postgres:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "8090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: relief_radar
+      POSTGRES_PASSWORD: "sNK0WSp3tSCJSb3W4byxz131J28uk9FM"
+    volumes:
+      - relief_radar_data:/var/lib/postgresql/data
+
+
+  # Test services
+  postgres_test:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "9090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: relief_radar_test
+      POSTGRES_PASSWORD: "1_FCsBJym4mPQJsIIiv6nWxgutPx1QD0"
+    volumes:
+      - relief_radar_test_data:/var/lib/postgresql/data
+
+
+volumes:
+  relief_radar_data:
+  relief_radar_test_data:

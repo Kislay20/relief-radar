@@ -1,0 +1,11 @@
+class: ReportSubmission
+fields:
+  zoneId: int
+  clientReportId: UuidValue
+  rawText: String
+  lat: double?
+  lng: double?
+  accuracyM: double?
+  clientCreatedAt: DateTime
+  imageBytes: ByteData?
+  imageMime: String?

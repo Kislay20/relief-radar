@@ -1,0 +1,44 @@
+emailIdp:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+aiTriage:
+  - triageSosText:
+  - triageIncident:
+  - ingestAndTriageSos:
+disasterZone:
+  - createZone:
+  - getZoneById:
+  - getAllActiveZones:
+incident:
+  - watchIncidents:
+  - reportIncident:
+  - getIncidentById:
+  - getIncidentsByZone:
+  - updateIncidentStatus:
+  - getAllRecentIncidents:
+  - attachEvidence:
+  - getUploadDescription:
+  - verifyUpload:
+ops:
+  - watchIncidents:
+  - smokeTest:
+  - seedMockData:
+responder:
+  - updateLocation:
+  - getResponderProfile:
+  - watchResponderLocations:
+  - trackLocation:
+  - getLocationHistory:
+sitrep:
+  - generateSituationReport:
+  - exportSituationReportPdf:
+greeting:
+  - hello:

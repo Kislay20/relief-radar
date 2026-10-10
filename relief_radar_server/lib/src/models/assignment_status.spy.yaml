@@ -1,0 +1,10 @@
+enum: AssignmentStatus
+serialized: byName
+values:
+  - offered
+  - accepted
+  - declined
+  - expired
+  - enRoute
+  - onScene
+  - completed

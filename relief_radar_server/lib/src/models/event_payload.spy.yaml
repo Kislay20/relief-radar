@@ -1,0 +1,9 @@
+class: EventPayload
+fields:
+  incident: IncidentSnapshot?                # fat events: full post-change snapshot
+  fromLevel: int?
+  toLevel: int?
+  radiusM: double?
+  reportId: int?
+  responderId: int?
+  note: String?

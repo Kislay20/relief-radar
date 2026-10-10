@@ -1,0 +1,5 @@
+class: IncidentDetail
+fields:
+  incident: IncidentSnapshot
+  reports: List<Report>
+  timeline: List<Event>

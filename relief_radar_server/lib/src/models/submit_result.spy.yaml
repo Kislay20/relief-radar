@@ -1,0 +1,6 @@
+class: SubmitResult
+fields:
+  reportId: int
+  alreadyReceived: bool                      # true on idempotent retry
+  streamId: String
+  headSeq: int

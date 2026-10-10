@@ -1,0 +1,10 @@
+enum: NeedType
+serialized: byName
+values:
+  - rescue
+  - medical
+  - water
+  - food
+  - shelter
+  - evacuation
+  - other

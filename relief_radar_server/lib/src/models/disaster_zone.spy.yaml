@@ -1,0 +1,14 @@
+class: DisasterZone
+table: disaster_zone
+fields:
+  name: String
+  kind: String                       # flood | quake
+  center: GeographyPoint
+  bounds: GeographyPolygon?
+  active: bool, default=true
+  timeScale: double, default=1.0     # demo clock: 60.0 => a 10-min SLA fires in 10s
+  createdAt: DateTime, default=now
+indexes:
+  disaster_zone_center_idx:
+    fields: center
+    type: gist

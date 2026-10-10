@@ -1,0 +1,7 @@
+class: IncidentCache
+table: incident_cache
+database: client
+fields:
+  incidentId: int, unique
+  zoneId: int
+  snapshot: IncidentSnapshot

@@ -1,0 +1,12 @@
+class: SituationReport
+fields:
+  title: String
+  timestamp: DateTime
+  threatLevel: String
+  executiveSummary: String
+  criticalIncidentsCount: int
+  openIncidentsCount: int
+  totalHeadcountAtRisk: int
+  keyPriorities: List<String>
+  resourceRecommendations: List<String>
+  generatedBy: String

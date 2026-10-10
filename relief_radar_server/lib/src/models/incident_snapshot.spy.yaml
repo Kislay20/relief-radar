@@ -1,0 +1,22 @@
+class: IncidentSnapshot
+fields:
+  id: int
+  zoneId: int
+  needType: NeedType
+  status: IncidentStatus
+  severity: int
+  headcount: int?
+  vulnerabilities: List<String>
+  summary: String
+  lat: double
+  lng: double
+  accuracyRadiusM: double
+  reportCount: int
+  escalationLevel: int
+  dispatchRadiusM: double
+  levelStartedAt: DateTime                   # client animates ring: (now-start)/(next-start)
+  nextEscalationAt: DateTime?
+  assignedResponderName: String?
+  firstReportAt: DateTime
+  lastReportAt: DateTime
+  version: int

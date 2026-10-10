@@ -1,0 +1,4 @@
+exception: IncidentAlreadyTaken
+fields:
+  incidentId: int
+  takenByName: String?

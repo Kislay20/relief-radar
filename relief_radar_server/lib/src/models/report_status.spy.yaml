@@ -1,0 +1,8 @@
+enum: ReportStatus
+serialized: byName
+values:
+  - received
+  - structuring
+  - structured
+  - clustered
+  - failed

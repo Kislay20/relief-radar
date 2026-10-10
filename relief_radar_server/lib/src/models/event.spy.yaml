@@ -1,0 +1,19 @@
+class: Event
+table: event
+fields:
+  streamId: String                           # zone:{id} | responder:{id} | incident:{id}
+  seq: int                                   # gapless per stream (see StreamHead)
+  type: EventType
+  incidentId: int?
+  payload: EventPayload, serializationDataType=jsonb
+  createdAt: DateTime, default=now
+indexes:
+  event_stream_seq_uq:
+    fields: streamId, seq
+    unique: true
+  event_incident_idx:
+    fields: incidentId
+  event_payload_gin_idx:
+    fields: payload
+    type: gin
+    operatorClass: jsonbPathOps

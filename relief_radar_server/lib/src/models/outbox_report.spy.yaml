@@ -1,0 +1,15 @@
+class: OutboxReport
+table: outbox_report
+database: client
+fields:
+  clientReportId: UuidValue, unique
+  zoneId: int
+  rawText: String
+  lat: double?                               # SQLite stores geography as text and cannot
+  lng: double?                               # run spatial queries => keep plain doubles
+  accuracyM: double?
+  imagePath: String?
+  clientCreatedAt: DateTime
+  state: String                              # pending | sending | sent | failed
+  attempts: int, default=0
+  lastError: String?

@@ -1,0 +1,16 @@
+name: _
+publish_to: none
+
+environment:
+  sdk: '^3.12.2'
+
+workspace:
+  - relief_radar_client
+  - relief_radar_server
+  - relief_radar_flutter
+
+dependencies:
+  relief_radar_client:
+    path: relief_radar_client
+
+

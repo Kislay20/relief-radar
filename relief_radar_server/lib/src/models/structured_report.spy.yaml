@@ -1,0 +1,13 @@
+class: StructuredReport
+fields:
+  needType: NeedType
+  severity: int                              # 1-5
+  headcount: int?
+  vulnerabilities: List<String>
+  hazards: List<String>                      # rising water, fire, gas, collapse
+  waterDepthCm: int?
+  translatedText: String                     # English
+  detectedLang: String                       # ISO 639-1
+  locationHint: String?                      # "behind the temple, 2nd street"
+  imageObservations: String?
+  confidence: double                         # 0-1, model self-rating

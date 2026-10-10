@@ -1,0 +1,10 @@
+class: ReportMedia
+table: report_media
+fields:
+  reportId: int, relation(parent=report, onDelete=Cascade)
+  mime: String
+  bytes: ByteData                    # client-compressed, <= ~400 KB
+  createdAt: DateTime, default=now
+indexes:
+  report_media_report_idx:
+    fields: reportId

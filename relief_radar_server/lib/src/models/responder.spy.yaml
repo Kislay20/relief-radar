@@ -1,0 +1,19 @@
+class: Responder
+table: responder
+fields:
+  authUserId: UuidValue                      # adapt to the auth module's user-id type
+  displayName: String
+  capabilities: List<NeedType>
+  capacity: int, default=1
+  status: ResponderStatus
+  location: GeographyPoint?
+  lastSeenAt: DateTime?
+indexes:
+  responder_auth_user_uq:
+    fields: authUserId
+    unique: true
+  responder_location_gist_idx:
+    fields: location
+    type: gist
+  responder_status_idx:
+    fields: status

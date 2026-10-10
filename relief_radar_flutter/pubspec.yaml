@@ -1,0 +1,93 @@
+name: relief_radar_flutter
+description: A new Flutter project with Serverpod.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: '^3.12.2'
+  flutter: '^3.44.4'
+
+resolution: workspace
+
+dependencies:
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  connectivity_plus: ^7.3.1
+  cupertino_icons: ^1.0.5
+  flutter:
+    sdk: flutter
+  flutter_local_notifications: ^22.3.1
+  flutter_map: ^8.3.2
+  geolocator: ^14.1.1
+  hive_flutter: ^1.1.0
+  http: ^1.6.0
+  image_picker: ^1.2.4
+  latlong2: ^0.10.1
+  open_filex: ^4.7.0
+  path_provider: ^2.1.6
+  relief_radar_client:
+    path: ../relief_radar_client
+  serverpod_auth_client: 4.0.3
+  serverpod_auth_email_flutter: ^4.0.3
+  serverpod_auth_idp_flutter: 4.0.3
+  serverpod_auth_shared_flutter: ^4.0.3
+  serverpod_flutter: 4.0.3
+
+dev_dependencies:
+  # Used for agents to drive the app through the Dart MCP
+  flutter_driver:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: '>=3.0.0 <7.0.0'
+  flutter_native_splash: ^2.4.8
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  flutter_secure_storage: ^10.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/config.json
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: Rajdhani
+      fonts:
+        - asset: assets/fonts/Rajdhani-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Rajdhani-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Rajdhani-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Rajdhani-Bold.ttf
+          weight: 700
+    - family: ShareTechMono
+      fonts:
+        - asset: assets/fonts/ShareTechMono-Regular.ttf
+          weight: 400

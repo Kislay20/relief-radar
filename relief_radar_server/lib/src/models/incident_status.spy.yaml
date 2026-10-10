@@ -1,0 +1,11 @@
+enum: IncidentStatus
+serialized: byName
+values:
+  - open
+  - escalated
+  - assigned
+  - enRoute
+  - onScene
+  - resolved
+  - expired
+  - merged

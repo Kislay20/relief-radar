@@ -1,0 +1,5 @@
+class: MapSnapshot
+fields:
+  incidents: List<IncidentSnapshot>
+  headSeq: int                               # read in the same tx as incidents => no gap
+  serverNow: DateTime                        # for client clock-skew correction

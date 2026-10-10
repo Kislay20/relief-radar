@@ -1,0 +1,6 @@
+class: AiTriageResult
+fields:
+  severity: String                           # CRITICAL, HIGH, MODERATE, LOW
+  summary: String                            # Situational summary
+  tags: List<String>                         # Extracted emergency tags
+  rawDescription: String                     # Original SOS text

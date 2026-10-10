@@ -1,0 +1,39 @@
+class: Report
+table: report
+fields:
+  zoneId: int, relation(parent=disaster_zone)
+  clientReportId: UuidValue                 # idempotency key minted on the device
+  reporterKey: String                       # anonymous device key or auth user id
+  rawText: String
+  hasImage: bool, default=false
+  clientLocation: GeographyPoint?
+  locationAccuracyM: double?
+  clientCreatedAt: DateTime                 # when typed (may be hours before upload)
+  receivedAt: DateTime, default=now
+  status: ReportStatus
+  failureReason: String?
+  structured: StructuredReport?, serializationDataType=jsonb
+  embedding: Vector(768)?, scope=serverOnly # NULL until the pipeline has run
+  incidentId: int?, relation(parent=incident, onDelete=SetNull)
+indexes:
+  report_client_id_uq:
+    fields: clientReportId
+    unique: true
+  report_zone_status_idx:
+    fields: zoneId, status
+  report_incident_idx:
+    fields: incidentId
+  report_location_idx:
+    fields: clientLocation
+    type: gist
+  report_structured_gin_idx:
+    fields: structured
+    type: gin
+    operatorClass: jsonbPathOps
+  report_embedding_hnsw_idx:
+    fields: embedding
+    type: hnsw
+    distanceFunction: cosine
+    parameters:
+      m: 16
+      ef_construction: 64

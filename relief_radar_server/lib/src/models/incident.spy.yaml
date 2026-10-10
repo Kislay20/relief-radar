@@ -1,0 +1,47 @@
+class: Incident
+table: incident
+fields:
+  zoneId: int, relation(parent=disaster_zone)
+  needType: NeedType
+  status: IncidentStatus
+  severity: int                              # 1-5, re-scored as reports accumulate
+  headcount: int?
+  vulnerabilities: List<String>              # elderly, infant, injured, disabled, pregnant
+  summary: String                            # English, LLM-written, debounced refresh
+  aiSeverity: String?                        # CRITICAL, HIGH, MODERATE, LOW
+  aiTags: List<String>?                      # e.g., Medical, Flood, Evacuation
+  aiSummary: String?                         # AI generated concise situational summary
+  centroid: GeographyPoint
+  centroidEmbedding: Vector(768)?, scope=serverOnly
+  accuracyRadiusM: double
+  reportCount: int, default=1
+  firstReportAt: DateTime, default=now
+  lastReportAt: DateTime, default=now
+  # --- SLA / escalation state (source of truth; future calls are just the alarm clock) ---
+  baseSlaSeconds: int
+  escalationLevel: int, default=0
+  dispatchRadiusM: double
+  levelStartedAt: DateTime, default=now
+  nextEscalationAt: DateTime?
+  # --- assignment ---
+  assignedResponderId: int?, relation(parent=responder, onDelete=SetNull)
+  acceptedAt: DateTime?
+  resolvedAt: DateTime?
+  mergedIntoId: int?
+  evidenceUrl: String?
+  version: int, default=0                    # optimistic concurrency
+indexes:
+  incident_centroid_gist_idx:
+    fields: centroid
+    type: gist
+  incident_embedding_hnsw_idx:
+    fields: centroidEmbedding
+    type: hnsw
+    distanceFunction: cosine
+    parameters:
+      m: 16
+      ef_construction: 64
+  incident_zone_status_idx:
+    fields: zoneId, status
+  incident_next_escalation_idx:
+    fields: nextEscalationAt

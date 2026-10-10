@@ -1,0 +1,14 @@
+enum: EventType
+serialized: byName
+values:
+  - reportReceived
+  - reportStructured
+  - incidentCreated
+  - incidentUpdated
+  - incidentMerged
+  - slaEscalated
+  - taskOffered
+  - taskAccepted
+  - taskProgress
+  - incidentResolved
+  - systemNote

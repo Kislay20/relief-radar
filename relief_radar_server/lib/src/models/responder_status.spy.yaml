@@ -1,0 +1,6 @@
+enum: ResponderStatus
+serialized: byName
+values:
+  - available
+  - busy
+  - offline

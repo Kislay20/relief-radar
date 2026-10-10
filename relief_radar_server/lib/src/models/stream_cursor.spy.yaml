@@ -1,0 +1,7 @@
+class: StreamCursor
+table: stream_cursor
+database: client
+fields:
+  streamId: String, unique
+  lastSeq: int, default=0
+  updatedAt: DateTime, default=now
