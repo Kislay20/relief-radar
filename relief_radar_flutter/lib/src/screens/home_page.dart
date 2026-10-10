@@ -557,9 +557,12 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Icon(Icons.check_circle_outline, color: Colors.white),
                 SizedBox(width: 10),
-                Text(
-                  'Mock disaster zones & incidents seeded successfully!',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Expanded(
+                  child: Text(
+                    'Mock disaster zones & incidents seeded successfully!',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -933,12 +936,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xFF151C24),
         elevation: 4,
         shadowColor: Colors.black.withAlpha(150),
+        leadingWidth: 42,
+        titleSpacing: 6,
         leading: const Padding(
           padding: EdgeInsets.only(left: 12.0),
           child: Icon(
             Icons.crisis_alert_rounded,
             color: Color(0xFFEF5350),
-            size: 26,
+            size: 24,
           ),
         ),
         title: Column(
@@ -947,13 +952,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Text(
               'RELIEF RADAR',
-              overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w900,
-                letterSpacing: 1.2,
-                fontSize: 16,
+                letterSpacing: 1.0,
+                fontSize: 15,
               ),
             ),
             GestureDetector(
@@ -977,13 +981,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         actions: [
-          IconButton(
-            constraints: const BoxConstraints(minWidth: 38, minHeight: 38),
-            padding: const EdgeInsets.all(6),
-            icon: const Icon(Icons.auto_awesome, color: Color(0xFFFFD54F)),
-            tooltip: 'AI SOS Triage & Ingest',
-            onPressed: () => _showAiTriageModal(context),
-          ),
           IconButton(
             constraints: const BoxConstraints(minWidth: 38, minHeight: 38),
             padding: const EdgeInsets.all(6),

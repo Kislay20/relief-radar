@@ -12,7 +12,7 @@ void main() {
       ),
     );
 
-    expect(find.text('Relief Radar - Dashboard'), findsOneWidget);
-    expect(find.text('Logout'), findsOneWidget);
+    expect(find.text('RELIEF RADAR'), findsOneWidget);
+    expect(find.byTooltip('Logout'), findsOneWidget);
   });
 }
