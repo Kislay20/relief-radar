@@ -34,8 +34,8 @@ final ValueNotifier<bool> liveWebSocketConnectedNotifier = ValueNotifier<bool>(
   false,
 );
 
-/// Primary development server endpoint.
-const String defaultServerUrl = 'http://127.0.0.1:8080/';
+/// Primary live production server endpoint.
+const String defaultServerUrl = 'https://relief-radar-api.onrender.com/';
 
 /// Global notifier for active server URL changes.
 final ValueNotifier<String> activeServerUrlNotifier = ValueNotifier<String>(
@@ -75,9 +75,9 @@ Future<void> savePreferredGateway(String url) async {
 }
 
 /// Candidate endpoints tested during startup and dynamic failover.
-/// Prioritizes current host LAN IP and ADB reverse loopback, followed by
-/// fallback LAN IPs and emulator aliases.
+/// Prioritizes live production Render endpoint, followed by LAN IPs and emulator aliases.
 const List<String> candidateServerUrls = [
+  'https://relief-radar-api.onrender.com/', // Live Production Cloud API (Render)
   'http://127.0.0.1:8080/', // ADB reverse loopback / local device (USB)
   'http://10.3.197.147:8080/', // Active PC Wi-Fi (SRMIST.EDU.IN)
   'http://192.168.137.1:8080/', // Windows Mobile Hotspot IP

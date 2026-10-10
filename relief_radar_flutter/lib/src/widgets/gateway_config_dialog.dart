@@ -21,6 +21,12 @@ class GatewayPreset {
 
 const List<GatewayPreset> _defaultPresets = [
   GatewayPreset(
+    label: 'Live Production (Render)',
+    description: 'Cloud Serverpod API: relief-radar-api.onrender.com',
+    url: 'https://relief-radar-api.onrender.com/',
+    icon: Icons.cloud_done_rounded,
+  ),
+  GatewayPreset(
     label: 'Host PC Wi-Fi',
     description: 'Direct LAN access (SRMIST: 10.3.197.147)',
     url: 'http://10.3.197.147:8080/',
